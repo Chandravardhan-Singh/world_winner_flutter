@@ -67,6 +67,7 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/landing-page-art.png
+    - assets/images/onboarding-phone-number-bg.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

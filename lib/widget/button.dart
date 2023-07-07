@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
   final String text;
+  final Function() onPressed;
 
-  const Button({super.key, required this.text});
+  const Button({
+    super.key,
+    required this.text,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +16,11 @@ class Button extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         InkWell(
+          enableFeedback: true,
+          excludeFromSemantics: true,
+          splashColor: Colors.black,
+          splashFactory: InkRipple.splashFactory,
+          onTap: onPressed,
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 20),
             decoration: const BoxDecoration(
@@ -20,6 +30,7 @@ class Button extends StatelessWidget {
               ),
             ),
             width: MediaQuery.of(context).size.width - 50,
+            height: 58,
             alignment: Alignment.center,
             child: Text(
               text.toUpperCase(),

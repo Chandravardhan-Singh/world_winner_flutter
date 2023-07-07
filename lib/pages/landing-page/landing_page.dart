@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/extensions/string.dart';
 import 'package:world_winner_flutter/widget/button.dart';
 
@@ -45,17 +46,9 @@ class LandingPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Win big!",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontSize: 38,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w900),
-                    ),
-                    const Text(
-                      "Save the planet!",
-                      style: TextStyle(
+                    Text(
+                      context.localization!.landing_page_title,
+                      style: const TextStyle(
                         fontSize: 38,
                         color: Colors.white,
                         fontWeight: FontWeight.w900,
@@ -72,9 +65,9 @@ class LandingPage extends StatelessWidget {
                             fontSize: 16,
                             color: Colors.white,
                           ),
-                          children:
-                              "A guaranteed AED 1,000,000 monthly and up to AED 35,000 weekly!"
-                                  .addStyle(
+                          children: context
+                              .localization!.landing_page_description
+                              .addStyle(
                             style: const TextStyle(
                               fontWeight: FontWeight.w700,
                             ),
@@ -97,8 +90,8 @@ class LandingPage extends StatelessWidget {
                 width: double.infinity,
               ),
             ),
-            const Button(
-              text: "GET STARTED",
+            Button(
+              text: context.localization!.button_get_started,
             )
           ],
         ),

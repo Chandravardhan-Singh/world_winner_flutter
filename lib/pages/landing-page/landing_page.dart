@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/extensions/string.dart';
+import 'package:world_winner_flutter/pages/onboarding-phone-number/onboarding_phone_number.dart';
 import 'package:world_winner_flutter/widget/button.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
+
+  void navigateToOnboarding(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const OnboardingPhoneNumber(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +101,7 @@ class LandingPage extends StatelessWidget {
               ),
             ),
             Button(
+              onPressed: () => navigateToOnboarding(context),
               text: context.localization!.button_get_started,
             )
           ],

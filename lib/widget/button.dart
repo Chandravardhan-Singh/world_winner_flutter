@@ -15,23 +15,31 @@ class Button extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        InkWell(
-          enableFeedback: true,
-          excludeFromSemantics: true,
-          splashColor: Colors.black,
-          splashFactory: InkRipple.splashFactory,
-          onTap: onPressed,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 255, 88, 0),
-              borderRadius: BorderRadius.all(
-                Radius.circular(50),
-              ),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: const Color.fromARGB(255, 255, 88, 0).withOpacity(0.1),
+                blurRadius: 5.0, // soften the shadow
+                spreadRadius: 0.1, //extend the shadow
+                offset: const Offset(
+                  0.0, // Move to right 5  horizontally
+                  5.0, // Move to bottom 5 Vertically
+                ),
+              )
+            ],
+            color: const Color.fromARGB(255, 255, 88, 0),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(50),
             ),
-            width: MediaQuery.of(context).size.width - 50,
-            height: 58,
-            alignment: Alignment.center,
+          ),
+          width: MediaQuery.of(context).size.width - 50,
+          height: 58,
+          alignment: Alignment.center,
+          child: InkWell(
+            enableFeedback: true,
+            onTap: onPressed,
             child: Text(
               text.toUpperCase(),
               style: const TextStyle(

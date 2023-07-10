@@ -3,8 +3,36 @@ import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/extensions/string.dart';
 import 'package:world_winner_flutter/widget/button.dart';
 
-class OnboardingPhoneNumber extends StatelessWidget {
+class OnboardingPhoneNumber extends StatefulWidget {
   const OnboardingPhoneNumber({super.key});
+
+  @override
+  State<OnboardingPhoneNumber> createState() => _OnboardingPhoneNumberState();
+}
+
+class _OnboardingPhoneNumberState extends State<OnboardingPhoneNumber> {
+  bool termsAndConditionChecked = false;
+  TextEditingController phoneNumber = TextEditingController();
+  String phoneNumberError = "";
+  String phoneCountryError = "";
+
+  @override
+  void dispose() {
+    phoneNumber.dispose();
+    super.dispose();
+  }
+
+  void onSubmit() {
+    if (phoneNumber.text == "" || phoneNumber.text.length < 10) {
+      setState(() {
+        phoneNumberError = "Phone number is invalid!";
+      });
+    } else {
+      setState(() {
+        phoneNumberError = "";
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,24 +86,26 @@ class OnboardingPhoneNumber extends StatelessWidget {
                       borderRadius: BorderRadius.circular(60),
                       shape: BoxShape.rectangle,
                       border: Border.all(width: 0.5)),
-                  child: const Row(
+                  child: Row(
                     children: [
-                      Text(
+                      const Text(
                         "+971",
                         style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 16,
                         ),
                       ),
-                      Icon(Icons.keyboard_arrow_down),
+                      const Icon(Icons.keyboard_arrow_down),
                       Expanded(
                         child: TextField(
+                          autocorrect: false,
+                          controller: phoneNumber,
                           keyboardType: TextInputType.phone,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 16,
                           ),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                           ),
                         ),
@@ -83,13 +113,30 @@ class OnboardingPhoneNumber extends StatelessWidget {
                     ],
                   ),
                 ),
+                const SizedBox(height: 5),
+                Text(
+                  phoneNumberError,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.error,
+                    fontSize: 14,
+                  ),
+                ),
                 const SizedBox(height: 20),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(
-                      Icons.check_circle_rounded,
-                      color: Color.fromARGB(255, 255, 88, 0),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          termsAndConditionChecked = !termsAndConditionChecked;
+                        });
+                      },
+                      child: Icon(
+                        termsAndConditionChecked
+                            ? Icons.check_circle_rounded
+                            : Icons.circle_outlined,
+                        color: const Color.fromARGB(255, 255, 88, 0),
+                      ),
                     ),
                     const SizedBox(width: 10),
                     RichText(
@@ -122,12 +169,12 @@ class OnboardingPhoneNumber extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 10,
+            bottom: 40,
             left: 0,
             right: 0,
             child: Button(
               text: context.localization!.button_next,
-              onPressed: () {},
+              onPressed: onSubmit,
             ),
           )
         ],

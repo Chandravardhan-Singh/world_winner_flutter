@@ -36,73 +36,82 @@ class LandingPage extends StatelessWidget {
             stops: <double>[0.4, 1.0],
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 25, bottom: 25),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/images/logo.png',
-                    height: 100,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 25, bottom: 25),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/logo.png',
+                        height: 100,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 40, right: 10),
-              child: Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      context.localization!.landing_page_title,
-                      style: const TextStyle(
-                        fontSize: 38,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 20,
-                        bottom: 10,
-                      ),
-                      child: RichText(
-                        text: TextSpan(
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 40, right: 10),
+                  child: Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.localization!.landing_page_title,
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 38,
                             color: Colors.white,
+                            fontWeight: FontWeight.w900,
                           ),
-                          children: context
-                              .localization!.landing_page_description
-                              .addStyle(
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w700,
-                            ),
-                            richText: ["AED", "35,000", "1,000,000"],
-                            richStyle: const TextStyle(
-                              fontWeight: FontWeight.w900,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 20,
+                            bottom: 10,
+                          ),
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                              children: context
+                                  .localization!.landing_page_description
+                                  .addStyle(
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                richText: ["AED", "35,000", "1,000,000"],
+                                richStyle: const TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    'assets/images/landing-page-art.png',
+                    width: double.infinity,
+                  ),
+                ),
+              ],
             ),
-            Align(
-              alignment: Alignment.center,
-              child: Image.asset(
-                'assets/images/landing-page-art.png',
-                width: double.infinity,
+            Positioned(
+              bottom: 40,
+              left: 0,
+              right: 0,
+              child: Button(
+                onPressed: () => navigateToOnboarding(context),
+                text: context.localization!.button_get_started,
               ),
-            ),
-            Button(
-              onPressed: () => navigateToOnboarding(context),
-              text: context.localization!.button_get_started,
             )
           ],
         ),

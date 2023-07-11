@@ -3,6 +3,28 @@
   "landing_page_description": "A guaranteed AED 1,000,000 monthly and up to AED 35,000 weekly!",
   "button_get_started": "get started",
   "onboarding_phone_title": "What’s your \nnumber?",
+  "onboarding_phone_number": "Phone number",
   "onboarding_phone_terms_and_conditions": "I accept the Terms & Conditions and \nPrivacy Policy",
-  "button_next": "next"
+  "button_next": "next",
+  "otp_title": "We sent you a \nverification code!",
+  "otp_on_number": "on {phoneNumber}",
+  "@otp_on_number": {
+    "placeholder": {
+      "phoneNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "otp_tap_to_change": "TAP TO CHANGE",
+  "otp_code_not_received": "Didn’t receive the verification code?",
+  "otp_resend_in": "RESEND IN {time}",
+  "otp_resend": "RESEND",
+  "@otp_resend_in": {
+    "placeholder": {
+      "phoneNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "button_submit": "submit"
 }

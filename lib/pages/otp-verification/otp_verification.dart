@@ -1,11 +1,11 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
+import 'package:world_winner_flutter/pages/onboarding-user-details/onboarding_user_details.dart';
 import 'package:world_winner_flutter/pages/onboarding-phone-number/onboarding_phone_number.dart';
 import 'package:world_winner_flutter/widget/button.dart';
+import 'package:world_winner_flutter/widget/timer_button.dart';
 
 class OTPVerification extends StatefulWidget {
   const OTPVerification({super.key});
@@ -15,65 +15,17 @@ class OTPVerification extends StatefulWidget {
 }
 
 class _OTPVerificationState extends State<OTPVerification> {
-  int _start = 60;
-  bool _isActive = false;
-  String _timerString = '01:00';
-  Timer? _timer;
-  bool _canResend = false;
   String _otpValue = "";
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    startTimer();
-  }
-
-  void startTimer() {
-    setState(() {
-      _canResend = false;
-    });
-    _isActive = true;
-    _start = 60;
-    _timerString = '01:00';
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_start < 1) {
-          timer.cancel();
-          _isActive = false;
-          _onTimerFinish(); // Call your function here when the timer finishes
-        } else {
-          _start -= 1;
-          _timerString = _getTimeString(_start);
-        }
-      });
-    });
-  }
-
-  String _getTimeString(int time) {
-    int minutes = (time / 60).floor();
-    int seconds = time % 60;
-    String minutesStr = minutes.toString().padLeft(2, '0');
-    String secondsStr = seconds.toString().padLeft(2, '0');
-    return '$minutesStr:$secondsStr';
-  }
-
-  void _onTimerFinish() {
-    // Perform actions here after the timer finishes
-    print('Timer finished!');
-    setState(() {
-      _canResend = true;
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel(); // Cancel the timer to prevent it from continuing to run
-    super.dispose();
-  }
-
   void submitOTP() {
-    if (_otpValue.length < 4) {}
+    if (_otpValue.length == 4) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const OnboardingUserDetails(),
+        ),
+      );
+    }
   }
 
   void changeNumber() {
@@ -183,27 +135,11 @@ class _OTPVerificationState extends State<OTPVerification> {
                       fontSize: 16,
                     ),
                   ),
-                  TextButton(
-                    style: const ButtonStyle(
-                      splashFactory: NoSplash.splashFactory,
-                    ),
-                    onPressed: _canResend ? () {} : null,
-                    child: Text(
-                      _canResend
-                          ? context.localization!.otp_resend
-                          : context.localization!.otp_resend_in(_timerString),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                        color: _canResend
-                            ? const Color.fromARGB(255, 255, 88, 0)
-                            : Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withAlpha(150),
-                      ),
-                    ),
-                  ),
+                  TimerButton(
+                      onTimerFinish: () {
+                        print('callback here');
+                      },
+                      onResend: () {}),
                   const SizedBox(height: 20),
                 ],
               ),

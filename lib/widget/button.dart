@@ -106,6 +106,8 @@ class Button extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         InkWell(
+          enableFeedback: false,
+          splashFactory: NoSplash.splashFactory,
           onTap: onPressed,
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 20),

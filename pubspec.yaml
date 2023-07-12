@@ -70,6 +70,7 @@ flutter:
     - assets/images/landing-page-art.png
     - assets/images/onboarding-phone-number-bg.png
     - assets/images/otp-bg.png
+    - assets/images/signup-bg.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -26,5 +26,20 @@
       }
     }
   },
-  "button_submit": "submit"
+  "button_submit": "submit",
+  "signup_title": "Great! Let’s get \nto know you...",
+  "first_name": "First name",
+  "last_name": "Last name",
+  "birthday_label": "When is your birthday?",
+  "email_label": "Personal email",
+  "send_verification": "SEND VERIFICATION CODE",
+  "edit_email": "EDIT EMAIL",
+  "enter_code": "Enter verification code",
+  "code_sent_to_mail": "We have sent a verification code to your email.",
+  "first_name_error": "First name is required",
+  "last_name_error": "Last name is required",
+  "birth_date_error": "Birth Date is required",
+  "email_error": "Email is required",
+  "email_validation_error": "Invalid email, please check.",
+  "email_code_error": "Email code is required"
 }

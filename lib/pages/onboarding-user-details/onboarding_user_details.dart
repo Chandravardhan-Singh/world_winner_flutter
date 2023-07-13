@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/extensions/string.dart';
+import 'package:world_winner_flutter/pages/notification-permission/notification-permission.dart';
 import 'package:world_winner_flutter/widget/button.dart';
 import 'package:world_winner_flutter/widget/input.dart';
 import 'package:world_winner_flutter/widget/timer_button.dart';
@@ -38,6 +39,12 @@ class _OnboardingUserDetailsState extends State<OnboardingUserDetails> {
         birthDayError = false;
         formValidated = true;
       });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const NotificationPermission(),
+        ),
+      );
     }
   }
 
@@ -274,11 +281,13 @@ class _OnboardingUserDetailsState extends State<OnboardingUserDetails> {
                       ),
                     ),
                     Button(
-                      type: birthDay != "" && _formKey.currentState!.validate()
-                          ? ButtonType.contained
-                          : ButtonType.disable,
+                      // type: birthDay != "" && _formKey.currentState!.validate()
+                      //     ? ButtonType.contained
+                      //     : ButtonType.disable,
+                      type: ButtonType.contained,
                       text: context.localization!.button_submit,
-                      onPressed: formValidated ? submitPressed : () {},
+                      // onPressed: formValidated ? submitPressed : () {},
+                      onPressed: submitPressed,
                     )
                   ],
                 ),

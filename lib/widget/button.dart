@@ -76,6 +76,13 @@ extension GenerateTextStyleStyle on ButtonType {
         color: Color.fromRGBO(127, 130, 139, 1),
         letterSpacing: 1.28,
       );
+    } else if (name == ButtonType.textButton.name) {
+      return const TextStyle(
+        fontSize: 17,
+        fontWeight: FontWeight.w900,
+        color: Color.fromARGB(255, 255, 88, 0),
+        letterSpacing: 1.28,
+      );
     } else {
       return const TextStyle(
         fontSize: 17,
@@ -101,6 +108,15 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (type.name == ButtonType.textButton.name) {
+      return TextButton(
+        onPressed: onPressed,
+        child: Text(
+          text.toUpperCase(),
+          style: type.textStyle(),
+        ),
+      );
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,

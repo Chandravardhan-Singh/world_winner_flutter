@@ -40,6 +40,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   otp_text_field: ^1.1.3
+  permission_handler: ^10.4.2
 
 
 dev_dependencies:
@@ -71,6 +72,8 @@ flutter:
     - assets/images/onboarding-phone-number-bg.png
     - assets/images/otp-bg.png
     - assets/images/signup-bg.png
+    - assets/images/notification-permission-bg.png
+    - assets/images/bell.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

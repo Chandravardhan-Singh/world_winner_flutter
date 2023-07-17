@@ -111,6 +111,8 @@ class LandingPage extends StatelessWidget {
               child: Button(
                 onPressed: () => navigateToOnboarding(context),
                 text: context.localization!.button_get_started,
+                backgroundColor: const Color.fromARGB(255, 255, 88, 0),
+                textColor: Colors.white,
               ),
             )
           ],

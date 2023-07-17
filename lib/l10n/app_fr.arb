@@ -5,6 +5,7 @@
   "onboarding_phone_title": "What’s your \nnumber?",
   "onboarding_phone_number": "Phone number",
   "onboarding_phone_terms_and_conditions": "I accept the Terms & Conditions and \nPrivacy Policy",
+  "error_terms_and_condition": "Terms & conditions required!",
   "button_next": "next",
   "otp_title": "We sent you a \nverification code!",
   "otp_on_number": "on {phoneNumber}",
@@ -48,5 +49,14 @@
   "notification_description_point_2": "New opportunities to win",
   "notification_description_point_3": "Your winnings",
   "button_allow": "allow",
-  "button_skip": "skip"
+  "button_skip": "skip",
+  "connect_carbon_share_title": "Get ready to play",
+  "connect_carbon_share_desc": "You can redeem coupons to enter the draw by either linking your SHARE account, or buying Carbon Offsets",
+  "link_share_description": "Link your account and redeem points to enter the draw.",
+  "link_carbon_description": "Buy Carbon Offsets and receive complimentary coupons",
+  "button_connect_now": "connect now",
+  "button_buy_now": "buy now",
+  "skip_for_now": "skip for now",
+  "loading_please_wait": "Please wait..",
+  "loading_please_wait_desc": "This might take a few seconds."
 }

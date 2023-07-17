@@ -8,7 +8,8 @@ import 'package:world_winner_flutter/widget/button.dart';
 import 'package:world_winner_flutter/widget/timer_button.dart';
 
 class OTPVerification extends StatefulWidget {
-  const OTPVerification({super.key});
+  const OTPVerification({super.key, required this.phoneNumber});
+  final String phoneNumber;
 
   @override
   State<OTPVerification> createState() => _OTPVerificationState();
@@ -80,7 +81,7 @@ class _OTPVerificationState extends State<OTPVerification> {
                   ),
                   const SizedBox(height: 15),
                   Text(
-                    context.localization!.otp_on_number('+917737506961'),
+                    context.localization!.otp_on_number(widget.phoneNumber),
                     style: const TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 16,
@@ -154,6 +155,8 @@ class _OTPVerificationState extends State<OTPVerification> {
                     : ButtonType.disable,
                 text: context.localization!.button_submit,
                 onPressed: submitOTP,
+                backgroundColor: const Color.fromARGB(255, 255, 88, 0),
+                textColor: Colors.white,
               ),
             )
           ],

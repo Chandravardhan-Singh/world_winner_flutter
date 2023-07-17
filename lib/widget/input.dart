@@ -13,8 +13,10 @@ class Input extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final String label;
+
   final bool disable;
   final String? Function(String?)? validator;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(

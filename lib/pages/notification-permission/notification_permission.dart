@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
+import 'package:world_winner_flutter/pages/onboarding-share-carbon/onboarding_share_carbon.dart';
 import 'package:world_winner_flutter/widget/button.dart';
 
 class NotificationPermission extends StatelessWidget {
@@ -14,7 +15,14 @@ class NotificationPermission extends StatelessWidget {
     });
   }
 
-  void skipPermission() {}
+  void skipPermission(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const OnboardingShareCarbon(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -191,15 +199,18 @@ class NotificationPermission extends StatelessWidget {
             child: Column(
               children: [
                 Button(
-                  type: ButtonType.contained,
                   text: context.localization!.button_allow,
                   onPressed: getNotificationPermission,
+                  backgroundColor: const Color.fromARGB(255, 255, 88, 0),
+                  textColor: Colors.white,
                 ),
                 const SizedBox(height: 10),
                 Button(
                   type: ButtonType.textButton,
                   text: context.localization!.button_skip,
-                  onPressed: skipPermission,
+                  onPressed: () => skipPermission(context),
+                  backgroundColor: Colors.white,
+                  textColor: const Color.fromARGB(255, 255, 88, 0),
                 ),
               ],
             ),

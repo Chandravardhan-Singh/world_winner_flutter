@@ -15,6 +15,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final UserCubit userCubit = UserCubit(UserRepository());
+
   @override
   void initState() {
     // TODO: implement initState

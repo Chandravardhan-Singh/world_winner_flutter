@@ -6,10 +6,11 @@ class UserRepository {
   Future<User?> getUserFromStorage() {
     return Future.delayed(const Duration(seconds: 2), () async {
       //get user from storage
-
       final userString = await Storage.instance().get('user');
       if (userString != null) {
-        User user = jsonDecode(userString);
+        Map<String, dynamic> userJson = json.decode(userString);
+        User user = User.fromJson(userJson);
+
         return user;
       } else {
         return null;

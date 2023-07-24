@@ -60,11 +60,11 @@ class _OnboardingUserDetailsState extends State<OnboardingUserDetails> {
             ),
           )
           .then((value) => {
-                Navigator.push(
-                  context,
+                Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                     builder: (context) => const NotificationPermission(),
                   ),
+                  (Route<dynamic> route) => false,
                 )
               });
     }
@@ -78,7 +78,9 @@ class _OnboardingUserDetailsState extends State<OnboardingUserDetails> {
 
   void sentVerificationCode() {
     validateBirthDay();
-    if (emailController.text.isValidEmail()) {
+    if (!birthDayError &&
+        _formKey.currentState!.validate() &&
+        emailController.text.isValidEmail()) {
       setState(() {
         _verificationSent = true;
       });

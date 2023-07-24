@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:world_winner_flutter/models/country_code.dart';
 import 'package:world_winner_flutter/models/user.dart';
 import 'package:world_winner_flutter/utils/storage/storage.dart';
@@ -42,9 +44,12 @@ class UserOnboardingRepository {
 
   Future<SignupResponse> userSignup(User user) {
     return Future.delayed(const Duration(seconds: 1), () {
+      final json = user.toJson();
+      final jsonString = jsonEncode(json);
+
       Storage.instance().add(
         'user',
-        user.toString(),
+        jsonString,
       );
 
       return SignupResponse.success;

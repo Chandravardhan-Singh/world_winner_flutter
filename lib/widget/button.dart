@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_winner_flutter/utils/constants/nums.dart';
 
 enum ButtonType {
   contained,
@@ -36,6 +37,16 @@ extension GenerateBoxDecorationStyle on ButtonType {
       return const BoxDecoration(
         color: Color.fromRGBO(239, 239, 239, 1),
         borderRadius: BorderRadius.all(
+          Radius.circular(50),
+        ),
+      );
+    } else if (name == ButtonType.gradient.name) {
+      return BoxDecoration(
+        gradient: LinearGradient(colors: [
+          const Color(0xFFFDD247),
+          Theme.of(context).colorScheme.primary
+        ]),
+        borderRadius: const BorderRadius.all(
           Radius.circular(50),
         ),
       );
@@ -123,6 +134,7 @@ class Button extends StatelessWidget {
   final String text;
   final Function() onPressed;
   final ButtonType type;
+  final double? width;
   final Color textColor;
   final Color backgroundColor;
 
@@ -131,6 +143,7 @@ class Button extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.type = ButtonType.contained,
+    this.width,
     required this.textColor,
     required this.backgroundColor,
   });
@@ -141,15 +154,15 @@ class Button extends StatelessWidget {
       return GestureDetector(
         onTap: onPressed,
         child: Container(
-          constraints: const BoxConstraints(
-            minWidth: 0,
-            maxWidth: 165,
+          constraints: BoxConstraints(
+            minWidth: 165,
+            maxWidth: text.length * 13 + 1 < 165 ? 165 : text.length * 13 + 1,
           ),
           padding: const EdgeInsets.symmetric(
             vertical: 3,
             horizontal: 0,
           ),
-          decoration: type.boxDecoration(context, color: Colors.white),
+          decoration: type.boxDecoration(context, color: backgroundColor),
           alignment: Alignment.center,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -189,7 +202,7 @@ class Button extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 20),
             decoration: type.boxDecoration(context),
-            width: MediaQuery.of(context).size.width - 50,
+            width: width ?? MediaQuery.of(context).size.width - defaultGap,
             height: 58,
             alignment: Alignment.center,
             child: Text(

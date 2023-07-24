@@ -58,5 +58,14 @@
   "button_buy_now": "buy now",
   "skip_for_now": "skip for now",
   "loading_please_wait": "Please wait..",
-  "loading_please_wait_desc": "This might take a few seconds."
+  "loading_please_wait_desc": "This might take a few seconds.",
+  "title_home": "Home",
+  "previous_winning_numbers": "Previous winning numbers",
+  "button_see_past_results": "SEE PAST RESULTS",
+  "next_chance": "Next chance to win in...",
+  "days": "DAYS",
+  "hours": "HOURS",
+  "minutes": "MINUTES",
+  "seconds": "SECONDS",
+  "button_play_now": "Play now"
 }

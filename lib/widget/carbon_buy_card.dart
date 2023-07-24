@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
+import 'package:world_winner_flutter/utils/constants/nums.dart';
 import 'package:world_winner_flutter/widget/button.dart';
 
 class CarbonBuyCard extends StatelessWidget {
@@ -10,7 +11,7 @@ class CarbonBuyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width - defaultGap,
       height: 118,
       decoration: BoxDecoration(
         image: DecorationImage(image: img.image, fit: BoxFit.fill),

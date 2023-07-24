@@ -83,6 +83,8 @@ flutter:
     - assets/images/share-logo.png
     - assets/images/carbon-green.png
     - assets/images/carbon-leaf.png
+    - assets/images/last-draw-winning-numbers-bg.png
+    - assets/images/last-draw-winning-numbers-winning-strip.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -95,6 +97,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  
   # fonts:
   #   - family: Schyler
   #     fonts:

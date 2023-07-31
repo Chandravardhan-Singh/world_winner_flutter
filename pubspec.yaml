@@ -75,6 +75,7 @@ flutter:
     - assets/images/logo.png
     - assets/images/landing-page-art.png
     - assets/images/onboarding-phone-number-bg.png
+    - assets/images/logo-ticket.png
     - assets/images/otp-bg.png
     - assets/images/signup-bg.png
     - assets/images/notification-permission-bg.png
@@ -85,6 +86,10 @@ flutter:
     - assets/images/carbon-leaf.png
     - assets/images/last-draw-winning-numbers-bg.png
     - assets/images/last-draw-winning-numbers-winning-strip.png
+    - assets/images/ticket-strip.png
+    - assets/images/long-ticket-strip.png
+    - assets/images/short-ticket-bg.png
+    - assets/images/long-ticket-bg.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

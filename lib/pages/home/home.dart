@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/widget/carbon_buy_card.dart';
@@ -21,6 +19,41 @@ class _HomeState extends State<Home> {
   final ScrollController homeScrollController = ScrollController();
 
   bool isExpanded = true;
+
+  void _popUpTicket() {
+    homeScrollController.animateTo(
+      1,
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.linear,
+    );
+    draggableScrollController
+        .animateTo(
+          1,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.bounceIn,
+        )
+        .then((value) => {
+              setState(() {
+                isExpanded = true;
+              })
+            });
+  }
+
+  void _closeTicket(double initialChildSize) {
+    draggableScrollController
+        .animateTo(
+          initialChildSize,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.bounceOut,
+        )
+        .then(
+          (value) => {
+            setState(() {
+              isExpanded = false;
+            })
+          },
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,59 +108,10 @@ class _HomeState extends State<Home> {
                       alignment: Alignment.center,
                       child: TicketStack(
                         isExpanded: isExpanded,
-                        onTicketPress: () {
-                          homeScrollController.animateTo(
-                            1,
-                            duration: const Duration(milliseconds: 200),
-                            curve: Curves.linear,
-                          );
-                          draggableScrollController
-                              .animateTo(
-                                1,
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.linear,
-                              )
-                              .then((value) => {
-                                    setState(() {
-                                      isExpanded = true;
-                                    })
-                                  });
-                        },
-                        closeTicketsOverlay: () {
-                          draggableScrollController
-                              .animateTo(
-                                initialChildSize,
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.linear,
-                              )
-                              .then(
-                                (value) => {
-                                  setState(() {
-                                    isExpanded = false;
-                                  })
-                                },
-                              );
-                        },
-                        openTicketsOverlay: () {
-                          homeScrollController.animateTo(
-                            1,
-                            duration: const Duration(milliseconds: 200),
-                            curve: Curves.linear,
-                          );
-                          draggableScrollController
-                              .animateTo(
-                                1,
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.linear,
-                              )
-                              .then(
-                                (value) => {
-                                  setState(() {
-                                    isExpanded = true;
-                                  })
-                                },
-                              );
-                        },
+                        onTicketPress: _popUpTicket,
+                        closeTicketsOverlay: () =>
+                            _closeTicket(initialChildSize),
+                        openTicketsOverlay: _popUpTicket,
                       ),
                     ),
                   );

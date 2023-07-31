@@ -41,19 +41,18 @@ class _TicketStackState extends State<TicketStack> {
   }
 
   void onTicketPress(int ticketValue) {
-    if (allPopped) {
-      _scrollToTop();
-      setState(() {
-        _selectedTicket = ticketValue;
-      });
-      widget.onTicketPress();
-    } else {
-      widget.onTicketPress();
-      _scrollToTop();
-      setState(() {
-        _selectedTicket = ticketValue;
-      });
-    }
+    _scrollToTop();
+    setState(() {
+      _selectedTicket = ticketValue;
+    });
+    widget.onTicketPress();
+  }
+
+  void _onTicketVerticalDragDown() {
+    setState(() {
+      _selectedTicket = null;
+    });
+    widget.closeTicketsOverlay();
   }
 
   @override
@@ -87,12 +86,7 @@ class _TicketStackState extends State<TicketStack> {
                   ...[0, 1, 2].map(
                     (e) {
                       double stackPosition = (e * 50);
-                      double openStackPosition = (e * 15);
-                      // double top = _overlayOpen
-                      //     ? e * 50
-                      //     : e == _selectedTicket
-                      //         ? 0
-                      //         : (e * 25) + (ticketHeight + 50);
+                      double openStackPosition = (e * 25);
                       double top = allPopped
                           ? stackPosition - 20
                           : e == _selectedTicket
@@ -101,16 +95,9 @@ class _TicketStackState extends State<TicketStack> {
 
                       return Ticket(
                         onVerticalDragEnd: () {},
-                        onVerticalDragUp: () {
-                          widget.openTicketsOverlay();
-                        },
+                        onVerticalDragUp: widget.openTicketsOverlay,
                         top: top,
-                        onVerticalDragDown: () {
-                          widget.closeTicketsOverlay();
-                          setState(() {
-                            _selectedTicket = null;
-                          });
-                        },
+                        onVerticalDragDown: _onTicketVerticalDragDown,
                         onTicketPress: () => onTicketPress(e),
                       );
                     },

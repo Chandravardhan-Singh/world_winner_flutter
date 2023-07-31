@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:world_winner_flutter/extensions/string.dart';
 
+// ignore: must_be_immutable
 class Ticket extends StatefulWidget {
   Function() onVerticalDragUp;
   Function() onVerticalDragDown;

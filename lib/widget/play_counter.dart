@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/utils/constants/nums.dart';
 import 'package:world_winner_flutter/widget/button.dart';
-import 'package:world_winner_flutter/widget/ticket/time_counter.dart';
+import 'package:world_winner_flutter/widget/time_counter.dart';
 
 class PlayCounter extends StatelessWidget {
   const PlayCounter({super.key});

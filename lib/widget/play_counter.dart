@@ -1,15 +1,67 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
+import 'package:world_winner_flutter/models/countdown.dart';
 import 'package:world_winner_flutter/utils/constants/nums.dart';
 import 'package:world_winner_flutter/widget/button.dart';
 import 'package:world_winner_flutter/widget/time_counter.dart';
 
-class PlayCounter extends StatelessWidget {
+class PlayCounter extends StatefulWidget {
   const PlayCounter({super.key});
+
+  @override
+  State<PlayCounter> createState() => _PlayCounterState();
+}
+
+class _PlayCounterState extends State<PlayCounter> {
+  late Timer _timer;
+  late DateTime _targetDate;
+  int days = 3;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _targetDate = DateTime.now().add(Duration(days: days));
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {});
+    });
+  }
+
+  Countdown _formatDuration(Duration duration) {
+    String twoDigits(int n) {
+      if (n >= 10) return "$n";
+      return "0$n";
+    }
+
+    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+
+    return Countdown(
+      days: duration.inDays.toString(),
+      hour: twoDigits(duration.inHours.remainder(24)),
+      minutes: twoDigitMinutes,
+      seconds: twoDigitSeconds,
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final themeColor = Theme.of(context).colorScheme;
+    DateTime now = DateTime.now();
+    Duration remainingTime = _targetDate.difference(now);
+
     return Container(
       padding: const EdgeInsets.only(top: 10),
       width: MediaQuery.of(context).size.width - defaultGap,
@@ -40,12 +92,35 @@ class PlayCounter extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TimeCounter(number: '5', label: context.localization!.days),
-                  TimeCounter(number: '08', label: context.localization!.hours),
                   TimeCounter(
-                      number: '51', label: context.localization!.minutes),
+                    number: _formatDuration(remainingTime).days,
+                    label: context.localization!.days,
+                    percentage: remainingTime.inDays / days,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   TimeCounter(
-                      number: '31', label: context.localization!.seconds),
+                    number: _formatDuration(remainingTime).hour,
+                    label: context.localization!.hours,
+                    percentage: remainingTime.inHours.remainder(24) / 24,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  TimeCounter(
+                    number: _formatDuration(remainingTime).minutes,
+                    label: context.localization!.minutes,
+                    percentage: remainingTime.inMinutes.remainder(60) / 60,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  TimeCounter(
+                    number: _formatDuration(remainingTime).seconds,
+                    label: context.localization!.seconds,
+                    percentage: remainingTime.inSeconds.remainder(60) / 60,
+                  ),
                 ],
               ),
             ],

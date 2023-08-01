@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class TimeCounter extends StatelessWidget {
   final String number;
 
   final String label;
+  final double percentage;
 
   const TimeCounter({
     super.key,
     required this.number,
     required this.label,
+    required this.percentage,
   });
 
   @override
@@ -16,30 +19,36 @@ class TimeCounter extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: const EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: const Color.fromRGBO(239, 239, 239, 1),
-            border: Border.all(
-              color: Theme.of(context).colorScheme.primary,
-              width: 5,
-              strokeAlign: 1,
-              style: BorderStyle.solid,
-            ),
+            image: DecorationImage(
+                image: Image.asset('assets/images/arc-bg.png').image,
+                alignment: Alignment.center),
           ),
-          height: 51,
-          width: 51,
-          alignment: Alignment.center,
-          child: Text(
-            number,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary,
-              fontSize: 24,
-              fontWeight: FontWeight.w800,
+          child: CircularPercentIndicator(
+            animation: true,
+            radius: 30,
+            percent: percentage,
+            animateFromLastPercent: true,
+            lineWidth: 6,
+            arcType: ArcType.FULL,
+            arcBackgroundColor: Colors.transparent,
+            center: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              height: 55,
+              width: 51,
+              alignment: Alignment.center,
+              child: Text(
+                number,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
             ),
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           label.toUpperCase(),
           style: const TextStyle(

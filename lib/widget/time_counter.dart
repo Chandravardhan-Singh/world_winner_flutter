@@ -30,8 +30,8 @@ class TimeCounter extends StatelessWidget {
             percent: percentage,
             animateFromLastPercent: true,
             lineWidth: 6,
-            arcType: ArcType.FULL,
-            arcBackgroundColor: Colors.transparent,
+            restartAnimation: false,
+            backgroundColor: Colors.transparent,
             center: Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
               height: 55,

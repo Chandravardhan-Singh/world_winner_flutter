@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/widget/carbon_buy_card.dart';
+import 'package:world_winner_flutter/widget/custom_drawer.dart';
 import 'package:world_winner_flutter/widget/play_counter.dart';
 import 'package:world_winner_flutter/widget/share_connect_card.dart';
 import 'package:world_winner_flutter/widget/ticket/ticket_stack.dart';
@@ -14,6 +15,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final DraggableScrollableController draggableScrollController =
       DraggableScrollableController();
   final ScrollController homeScrollController = ScrollController();
@@ -61,8 +64,15 @@ class _HomeState extends State<Home> {
     double initialChildSize = (MediaQuery.of(context).size.height - 600) /
         MediaQuery.of(context).size.height;
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: const CustomDrawer(),
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        leading: InkWell(
+          onTap: () {
+            _scaffoldKey.currentState!.openDrawer();
+          },
+          child: Image.asset('assets/images/drawer-icon.png'),
+        ),
         centerTitle: false,
         title: Text(context.localization!.title_home),
         elevation: 0,

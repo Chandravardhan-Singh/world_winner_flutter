@@ -74,9 +74,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/logo.png
+    - assets/images/leaf-bg.png
     - assets/images/landing-page-art.png
     - assets/images/onboarding-phone-number-bg.png
     - assets/images/arc-bg.png
+    - assets/images/drawer-icon.png
     - assets/images/logo-ticket.png
     - assets/images/otp-bg.png
     - assets/images/signup-bg.png

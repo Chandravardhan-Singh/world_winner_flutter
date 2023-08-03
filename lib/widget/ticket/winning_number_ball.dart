@@ -47,9 +47,6 @@ class WinningNumberBall extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const SizedBox(
-          width: 5,
-        ),
         SizedBox.square(
           dimension: 30,
           child: Container(
@@ -65,7 +62,7 @@ class WinningNumberBall extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          width: 5,
+          width: 10,
         ),
       ],
     );

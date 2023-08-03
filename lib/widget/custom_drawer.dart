@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
+import 'package:world_winner_flutter/pages/past-results/past_results.dart';
 import 'package:world_winner_flutter/widget/button.dart';
 import 'package:world_winner_flutter/widget/drawer_item.dart';
 
@@ -117,7 +118,15 @@ class CustomDrawer extends StatelessWidget {
           DrawerItem(title: 'Home', onTap: () {}),
           DrawerItem(title: 'Setup Autoplay', onTap: () {}),
           DrawerItem(title: 'SHARE Dashboard', onTap: () {}),
-          DrawerItem(title: 'Past Results', onTap: () {}),
+          DrawerItem(
+              title: 'Past Results',
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => PastResults(),
+                  ),
+                );
+              }),
           DrawerItem(title: 'Transaction History', onTap: () {}),
           DrawerItem(title: 'Cash Out', onTap: () {}),
           DrawerItem(title: 'How to Play', onTap: () {}),

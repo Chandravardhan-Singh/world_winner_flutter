@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/widget/carbon_buy_card.dart';
+import 'package:world_winner_flutter/widget/coupon_counter.dart';
 import 'package:world_winner_flutter/widget/custom_drawer.dart';
 import 'package:world_winner_flutter/widget/play_counter.dart';
 import 'package:world_winner_flutter/widget/share_connect_card.dart';
@@ -35,11 +36,13 @@ class _HomeState extends State<Home> {
           duration: const Duration(milliseconds: 200),
           curve: Curves.bounceIn,
         )
-        .then((value) => {
-              setState(() {
-                isExpanded = true;
-              })
-            });
+        .then(
+          (value) => {
+            setState(() {
+              isExpanded = true;
+            })
+          },
+        );
   }
 
   void _closeTicket(double initialChildSize) {
@@ -77,6 +80,9 @@ class _HomeState extends State<Home> {
         title: Text(context.localization!.title_home),
         elevation: 0,
         backgroundColor: themeColor.secondary,
+        actions: const [
+          CouponCounter(),
+        ],
       ),
       backgroundColor: themeColor.secondary,
       body: SingleChildScrollView(
@@ -92,6 +98,7 @@ class _HomeState extends State<Home> {
             children: [
               Column(
                 children: [
+                  const SizedBox(height: 20),
                   const PlayCounter(),
                   const SizedBox(height: 10),
                   ShareConnectCard(),

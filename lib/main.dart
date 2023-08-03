@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:world_winner_flutter/app.dart';
 
 // ignore: unused_import
 import 'package:world_winner_flutter/extensions/string.dart';
-// import 'package:world_winner_flutter/extensions/color.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 final theme = ThemeData(

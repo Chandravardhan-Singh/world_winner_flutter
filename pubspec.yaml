@@ -75,6 +75,8 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/leaf-bg.png
+    - assets/images/leafs-bg.png
+    - assets/images/draw-strip.png
     - assets/images/tick.png
     - assets/images/landing-page-art.png
     - assets/images/onboarding-phone-number-bg.png

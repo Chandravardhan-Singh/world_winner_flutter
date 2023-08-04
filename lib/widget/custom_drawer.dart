@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/pages/past-results/past_results.dart';
+import 'package:world_winner_flutter/pages/profile/profile.dart';
 import 'package:world_winner_flutter/widget/button.dart';
 import 'package:world_winner_flutter/widget/drawer_item.dart';
 
@@ -31,15 +32,24 @@ class CustomDrawer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Container(
-                            clipBehavior: Clip.hardEdge,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Image.network(
-                              'https://images.pexels.com/photos/14807470/pexels-photo-14807470.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-                              height: 35,
-                              width: 35,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => Profile(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              clipBehavior: Clip.hardEdge,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Image.network(
+                                'https://images.pexels.com/photos/14807470/pexels-photo-14807470.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                                height: 35,
+                                width: 35,
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -119,14 +129,15 @@ class CustomDrawer extends StatelessWidget {
           DrawerItem(title: 'Setup Autoplay', onTap: () {}),
           DrawerItem(title: 'SHARE Dashboard', onTap: () {}),
           DrawerItem(
-              title: 'Past Results',
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => PastResults(),
-                  ),
-                );
-              }),
+            title: 'Past Results',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => PastResults(),
+                ),
+              );
+            },
+          ),
           DrawerItem(title: 'Transaction History', onTap: () {}),
           DrawerItem(title: 'Cash Out', onTap: () {}),
           DrawerItem(title: 'How to Play', onTap: () {}),

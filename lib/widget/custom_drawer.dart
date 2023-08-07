@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/context.dart';
+import 'package:world_winner_flutter/pages/home/home.dart';
 import 'package:world_winner_flutter/pages/past-results/past_results.dart';
 import 'package:world_winner_flutter/pages/profile/profile.dart';
 import 'package:world_winner_flutter/widget/button.dart';
@@ -125,7 +126,15 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
           ),
-          DrawerItem(title: 'Home', onTap: () {}),
+          DrawerItem(
+              title: 'Home',
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const Home(),
+                  ),
+                );
+              }),
           DrawerItem(title: 'Setup Autoplay', onTap: () {}),
           DrawerItem(title: 'SHARE Dashboard', onTap: () {}),
           DrawerItem(

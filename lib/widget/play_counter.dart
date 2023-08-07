@@ -5,6 +5,8 @@ import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/models/countdown.dart';
 import 'package:world_winner_flutter/utils/constants/nums.dart';
 import 'package:world_winner_flutter/widget/button.dart';
+import 'package:world_winner_flutter/widget/dialog/custom_dialog.dart';
+import 'package:world_winner_flutter/widget/dialog/custom_popup.dart';
 import 'package:world_winner_flutter/widget/time_counter.dart';
 
 class PlayCounter extends StatefulWidget {
@@ -54,6 +56,38 @@ class _PlayCounterState extends State<PlayCounter> {
   void dispose() {
     _timer.cancel();
     super.dispose();
+  }
+
+  void playNowPressed() {
+    showCustomDialog(
+      context: context,
+      child: CustomPopup(
+        title: "Insufficient \ncoupons",
+        image: "assets/images/dialog/warning.png",
+        description:
+            "You do not have enough coupons to play World \nWinners at the moment. You may buy Carbon \nOffsets or redeem SHARE points to get more \ncoupons.",
+        buttonsList: (width) => [
+          Button(
+            text: 'buy carbon offset',
+            onPressed: () {},
+            textColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            width: width,
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          Button(
+            text: 'redeem share points',
+            onPressed: () {},
+            textColor: Colors.white,
+            backgroundColor: const Color.fromRGBO(182, 5, 77, 1),
+            width: width,
+          ),
+        ],
+        richText: const ['redeem', "SHARE", "points"],
+      ),
+    );
   }
 
   @override
@@ -154,7 +188,7 @@ class _PlayCounterState extends State<PlayCounter> {
             bottom: 5,
             child: Button(
               text: context.localization!.button_play_now,
-              onPressed: () {},
+              onPressed: playNowPressed,
               textColor: Colors.white,
               backgroundColor: themeColor.secondary,
               type: ButtonType.gradient,

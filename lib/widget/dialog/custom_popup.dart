@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/extensions/string.dart';
 import 'package:world_winner_flutter/utils/constants/nums.dart';
-import 'package:world_winner_flutter/widget/button.dart';
 
+// ignore: must_be_immutable
 class CustomPopup extends StatelessWidget {
-  const CustomPopup({super.key});
+  CustomPopup({
+    super.key,
+    required this.title,
+    this.description,
+    required this.buttonsList,
+    required this.image,
+    this.onDismiss,
+    this.richText,
+  });
+  final String title;
+  String? description = "";
+  List<String>? richText = [];
+  final List<Widget> Function(double) buttonsList;
+  final String image;
+  Function()? onDismiss = () {};
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +47,12 @@ class CustomPopup extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: Text(
-                        "Insufficient \ncoupons",
+                        title,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 32,
                           color: Colors.black,
                           fontWeight: FontWeight.w700,
@@ -46,51 +60,32 @@ class CustomPopup extends StatelessWidget {
                       ),
                     ),
                     Image.asset(
-                      'assets/images/dialog/warning.png',
+                      image,
                       height: 130,
                       width: 130,
                     ),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
-                        children:
-                            "You do not have enough coupons to play World \nWinners at the moment. You may buy Carbon \nOffsets or redeem SHARE points to get more \ncoupons."
-                                .addStyle(
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                          ),
-                          richText: ["redeem", "SHARE", "points"],
-                          richStyle: const TextStyle(
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ),
+                    description != null
+                        ? RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
+                              children: description!.addStyle(
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                richText: richText ?? [""],
+                                richStyle: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox(),
                     Column(
-                      children: [
-                        Button(
-                          text: 'buy carbon offset',
-                          onPressed: () {},
-                          textColor: Colors.white,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary,
-                          width: buttonWidth,
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        Button(
-                          text: 'redeem share points',
-                          onPressed: () {},
-                          textColor: Colors.white,
-                          backgroundColor: const Color.fromRGBO(182, 5, 77, 1),
-                          width: buttonWidth,
-                        ),
-                      ],
+                      children: buttonsList(buttonWidth),
                     ),
                   ],
                 ),
@@ -101,6 +96,9 @@ class CustomPopup extends StatelessWidget {
                 child: IconButton(
                   onPressed: () {
                     Navigator.of(context).pop();
+                    if (onDismiss != null) {
+                      onDismiss!();
+                    }
                   },
                   icon: const Icon(Icons.close),
                 ),

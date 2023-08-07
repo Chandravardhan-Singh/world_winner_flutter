@@ -81,7 +81,7 @@ extension GenerateBoxDecorationStyle on ButtonType {
             ),
           )
         ],
-        color: const Color.fromARGB(255, 255, 88, 0),
+        color: color,
         borderRadius: const BorderRadius.all(
           Radius.circular(50),
         ),
@@ -201,7 +201,7 @@ class Button extends StatelessWidget {
           onTap: onPressed,
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 20),
-            decoration: type.boxDecoration(context),
+            decoration: type.boxDecoration(context, color: backgroundColor),
             width: width ?? MediaQuery.of(context).size.width - defaultGap,
             height: 58,
             alignment: Alignment.center,

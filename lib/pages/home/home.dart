@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final themeColor = Theme.of(context).colorScheme;
-    double initialChildSize = (MediaQuery.of(context).size.height - 600) /
+    double initialChildSize = (MediaQuery.of(context).size.height - 620) /
         MediaQuery.of(context).size.height;
     return Scaffold(
       key: _scaffoldKey,

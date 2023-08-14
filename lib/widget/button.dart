@@ -168,10 +168,14 @@ class Button extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                text.toUpperCase(),
-                style: type.textStyle(
-                  color: textColor,
+              FittedBox(
+                fit: BoxFit.contain,
+                child: Text(
+                  text.toUpperCase(),
+                  maxLines: 1,
+                  style: type.textStyle(
+                    color: textColor,
+                  ),
                 ),
               ),
               Icon(
@@ -187,9 +191,13 @@ class Button extends StatelessWidget {
       return TextButton(
         style: const ButtonStyle(splashFactory: NoSplash.splashFactory),
         onPressed: onPressed,
-        child: Text(
-          text.toUpperCase(),
-          style: type.textStyle(),
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Text(
+            text.toUpperCase(),
+            maxLines: 1,
+            style: type.textStyle(),
+          ),
         ),
       );
     }
@@ -205,9 +213,13 @@ class Button extends StatelessWidget {
             width: width ?? MediaQuery.of(context).size.width - defaultGap,
             height: 58,
             alignment: Alignment.center,
-            child: Text(
-              text.toUpperCase(),
-              style: type.textStyle(),
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: Text(
+                text.toUpperCase(),
+                maxLines: 1,
+                style: type.textStyle(),
+              ),
             ),
           ),
         ),

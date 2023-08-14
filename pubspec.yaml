@@ -98,6 +98,11 @@ flutter:
     - assets/images/short-ticket-bg.png
     - assets/images/long-ticket-bg.png
     - assets/images/close.png
+    - assets/images/setup-autoplay-intro-bg.png
+    - assets/images/what-is-autoplay.png
+    - assets/images/what-is-autoplay-2.png
+    - assets/images/what-is-autoplay-3.png
+
     - assets/images/dialog/warning.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

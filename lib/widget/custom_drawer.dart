@@ -3,6 +3,7 @@ import 'package:world_winner_flutter/extensions/context.dart';
 import 'package:world_winner_flutter/pages/home/home.dart';
 import 'package:world_winner_flutter/pages/past-results/past_results.dart';
 import 'package:world_winner_flutter/pages/profile/profile.dart';
+import 'package:world_winner_flutter/pages/setup-autoplay-intro/setup_autoplay_intro.dart';
 import 'package:world_winner_flutter/widget/button.dart';
 import 'package:world_winner_flutter/widget/drawer_item.dart';
 
@@ -135,7 +136,15 @@ class CustomDrawer extends StatelessWidget {
                   ),
                 );
               }),
-          DrawerItem(title: 'Setup Autoplay', onTap: () {}),
+          DrawerItem(
+              title: 'Setup Autoplay',
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => SetupAutoplayIntro(),
+                  ),
+                );
+              }),
           DrawerItem(title: 'SHARE Dashboard', onTap: () {}),
           DrawerItem(
             title: 'Past Results',

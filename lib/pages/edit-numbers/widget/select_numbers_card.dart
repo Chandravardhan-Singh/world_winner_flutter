@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:world_winner_flutter/models/number_list.dart';
-import 'package:world_winner_flutter/pages/edit-numbers/edit_numbers.dart';
 import 'package:world_winner_flutter/utils/constants/nums.dart';
 import 'package:world_winner_flutter/widget/ticket/winning_number_ball.dart';
 
-class PickNumberCard extends StatelessWidget {
-  PickNumberCard({
+class SelectNumbersCard extends StatelessWidget {
+  SelectNumbersCard({
     super.key,
     required this.numbers,
+    this.clearAll,
+    this.randomize,
   });
 
   final NumberList numbers;
+  void Function()? clearAll = () {};
+  void Function()? randomize = () {};
   final Image img =
       Image.asset('assets/images/last-draw-winning-numbers-bg.png');
 
@@ -56,13 +59,15 @@ class PickNumberCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Pick your numbers",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
+                const FittedBox(
+                  child: Text(
+                    "Tap on the numbers to select or deselect them",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -90,26 +95,20 @@ class PickNumberCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const InkWell(
+                    InkWell(
+                      onTap: clearAll,
                       child: Text(
-                        "REMOVE",
-                        style: TextStyle(
+                        "clear all".toUpperCase(),
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),
                     InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const EditNumbers(),
-                          ),
-                        );
-                      },
+                      onTap: randomize,
                       child: Text(
-                        "EDIT NUMBERS",
+                        "Randomize".toUpperCase(),
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
